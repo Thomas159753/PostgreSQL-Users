@@ -19,6 +19,7 @@ exports.userCreateGet = (req, res) => {
     })
 }
 
+
 exports.userCreatePost = [
     validateUSer,
     (req, res) => {
