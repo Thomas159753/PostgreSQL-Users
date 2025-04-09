@@ -1,0 +1,8 @@
+<% if (locals.errors) {%>
+    <ul>
+        <% errors.forEach(function(error) {%>
+        <li><%= error.msg %></li>
+        <% }) %>
+    </ul>
+<% } %>
+<!-- The errors.ejs partial is a simple list of errors that will be displayed on the page. -->
