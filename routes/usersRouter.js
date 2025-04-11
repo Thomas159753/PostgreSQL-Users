@@ -3,10 +3,7 @@ const usersRouter = Router();
 const usersController = require('../controller/usersController');
 
 usersRouter.route('/')
-    .get((req, res) => {
-        console.log("GET /users - usernames will be logged here - WIP");
-        res.send("Usernames will be logged here - WIP");
-    });
+    .get(usersController.userCreateList);
 
 usersRouter.route('/new')
     .get(usersController.userCreateGet)

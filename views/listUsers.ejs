@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+</head>
+<body>
+    <h1><%= title%></h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Username</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if (users && users.length > 0) { %>
+                <% users.forEach(user => { %>
+                    <tr>
+                        <td><%= user.username %></td>
+                    </tr>
+                <% }) %>
+            <% } else { %>
+                <tr>
+                    <td>No users found</td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+    <a href="/new">Add a user</a>
+</body>
+</html>

@@ -1,4 +1,5 @@
 const { body, validationResult, query } = require("express-validator");
+const db = require("../database/queries");
 
 const alphaError = 'Username must only contain letters';
 const lenghtError = 'Input field must be at least 3 characters long';
@@ -10,7 +11,15 @@ const validateUSer = [
         .isAlpha().withMessage(alphaError)
 ]
 
-exports.userCreateGet = (req, res) => {
+exports.userCreateList = async (req, res) => {
+    const users = await db.getAllUsersnames();
+    res.render('listUsers', {
+        title: 'All Users',
+        users,
+    })
+}
+
+exports.userCreateGet = async (req, res) => {
     res.render('createUser', {
         title: 'Create User',
     })
@@ -18,7 +27,7 @@ exports.userCreateGet = (req, res) => {
 
 exports.userCreatePost = [
     validateUSer,
-    (req, res) => {
+    async (req, res) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(400).render('createUser', {
@@ -27,7 +36,8 @@ exports.userCreatePost = [
             })
         }
         console.log('User Created');
-        const { userName } = req.body; // this is WIP and will need to be sent to the database
+        const { userName } = req.body;
+        await db.insertUsername(userName);
         res.redirect('/');
     }
 ]
