@@ -25,6 +25,17 @@ exports.userCreateGet = async (req, res) => {
     })
 }
 
+exports.userSearchGet = async (req, res) => {
+    const { search } = req.query;
+    const usernames = await db.searchByUsername(search);
+    res.render('listUsers', {
+        title: 'Search Results',
+        users: usernames,
+        value: search, // something wrong with this
+        //also search?search=Odin :|
+    })
+}
+
 exports.userCreatePost = [
     validateUSer,
     async (req, res) => {

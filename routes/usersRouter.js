@@ -9,4 +9,8 @@ usersRouter.route('/new')
     .get(usersController.userCreateGet)
     .post(usersController.userCreatePost);
 
+usersRouter.route('/search')
+    .get(usersController.userSearchGet)
+    // .post(usersController.userSearchPost);
+
 module.exports = usersRouter;

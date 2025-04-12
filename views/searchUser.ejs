@@ -6,26 +6,26 @@
     <title><%= title %></title>
 </head>
 <body>
-    <h1><%= title%></h1>
+    <h1><%= title %></h1>
     <form action="/search" method="GET">
         <label for="search">Search Users</label>
-        <input type="text" id="search" name="search" placeholder="Search by name" required>
+        <input type="text" name="search" id="search" value="<%= value %>" placeholder="Search by name" required>
         <button type="submit">Search</button>
     </form>
     <table>
         <thead>
             <tr>
-                <th>Username</th>
+                <th>Usernames</th>
             </tr>
         </thead>
         <tbody>
-            <% if (users && users.length > 0) { %>
+            <% if(users && users.length > 0) {%>
                 <% users.forEach(user => { %>
                     <tr>
                         <td><%= user.username %></td>
                     </tr>
                 <% }) %>
-            <% } else { %>
+            <% } else{ %>
                 <tr>
                     <td>No users found</td>
                 </tr>
@@ -33,5 +33,6 @@
         </tbody>
     </table>
     <a href="/new">Add a user</a>
+    <a href="/">Back Home</a>
 </body>
 </html>
