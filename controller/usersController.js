@@ -12,27 +12,23 @@ const validateUSer = [
 ]
 
 exports.userCreateList = async (req, res) => {
-    const users = await db.getAllUsersnames();
+    const { search } = req.query;
+    let users;
+    if (search) {
+        users = await db.searchByUsername(search);
+    } else{
+        users = await db.getAllUsersnames();
+    }
     res.render('listUsers', {
-        title: 'All Users',
+        title: 'User List',
         users,
+        value: search || '',
     })
 }
 
 exports.userCreateGet = async (req, res) => {
     res.render('createUser', {
         title: 'Create User',
-    })
-}
-
-exports.userSearchGet = async (req, res) => {
-    const { search } = req.query;
-    const usernames = await db.searchByUsername(search);
-    res.render('listUsers', {
-        title: 'Search Results',
-        users: usernames,
-        value: search, // something wrong with this
-        //also search?search=Odin :|
     })
 }
 
@@ -52,3 +48,7 @@ exports.userCreatePost = [
         res.redirect('/');
     }
 ]
+
+exports.userDeletePost = async (req, res) => {
+    //Work in progress here
+}

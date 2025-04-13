@@ -3,14 +3,13 @@ const usersRouter = Router();
 const usersController = require('../controller/usersController');
 
 usersRouter.route('/')
-    .get(usersController.userCreateList);
+    .get(usersController.userCreateList)
 
 usersRouter.route('/new')
     .get(usersController.userCreateGet)
     .post(usersController.userCreatePost);
 
-usersRouter.route('/search')
-    .get(usersController.userSearchGet)
-    // .post(usersController.userSearchPost);
-
+usersRouter.route(":id/delete")
+    .post(usersConjtroller.userDeletePost);
+    
 module.exports = usersRouter;

@@ -10,7 +10,7 @@ async function insertUsername(username) {
 }
 
 async function searchByUsername(username) {
-    const { rows } = await pool.query("SELECT * FROM usernames WHERE username = $1", [username]);
+    const { rows } = await pool.query("SELECT * FROM usernames WHERE username ILIKE $1", [`%${username}%`]);
     return rows;
 }
 
