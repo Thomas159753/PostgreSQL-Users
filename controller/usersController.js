@@ -50,5 +50,8 @@ exports.userCreatePost = [
 ]
 
 exports.userDeletePost = async (req, res) => {
-    //Work in progress here
+    const { id } = req.params;
+    await db.deleteUsername(id);
+    res.redirect('/');
+    console.log('User Deleted');
 }

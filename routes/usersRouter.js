@@ -9,7 +9,7 @@ usersRouter.route('/new')
     .get(usersController.userCreateGet)
     .post(usersController.userCreatePost);
 
-usersRouter.route(":id/delete")
-    .post(usersConjtroller.userDeletePost);
+usersRouter.route("/:id/delete")
+    .post(usersController.userDeletePost);
     
 module.exports = usersRouter;
